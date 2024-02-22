@@ -1,0 +1,79 @@
+#include <bits/stdc++.h>
+#include <iostream>
+#include <vector>
+
+using namespace std;
+
+vector<int> quickSort(vector<int> arr) {
+    
+    //Defining the pivot element
+    int pivot = arr[0];
+    
+    //Defining the arrays to store,
+    // values < pivot in array 'left',
+    // values > pivot in array 'right',
+    // values = pivot in array 'equal'
+    vector<int> left, right, equal, returnArr;
+    
+    int arr_size = arr.size();
+    
+    for (int i = 0; i < arr_size; i++){
+        if(arr[i] < pivot){
+            //element is added to left array if value<pivot
+            left.push_back(arr[i]);
+            
+        }else if(arr[i] > pivot){
+            //element is added to right array if value>pivot
+            right.push_back(arr[i]);
+            
+        }else{
+            //element is added to equal array if value=pivot
+            equal.push_back(arr[i]);
+        }
+    }
+    
+    int left_size = left.size();
+    
+    //Continue adding elements to the returnArray, from left, equal, right arrays respectively
+    for (int i =0; i<left_size; i++){
+        returnArr.push_back(left[i]);
+    }
+    
+    int equal_size = equal.size();
+    
+    for (int i =0; i<equal_size; i++){
+        returnArr.push_back(equal[i]);
+    }
+    
+    int right_size = right.size();
+    
+    for (int i =0; i<right_size; i++){
+        returnArr.push_back(right[i]);
+    }
+    
+    //Returning the final array
+    return returnArr;
+}
+
+int main() {
+    int n;
+    cin >> n;
+
+    //Reading the input
+    vector<int> arr(n);
+    for (int i = 0; i < n; i++) {
+        cin >> arr[i];
+    }
+
+    //Calling the quickSort function
+    vector<int> returnArr = quickSort(arr);
+
+    //Outputting the returned array
+    int new_len = returnArr.size();
+    for (int i = 0; i < new_len; i++) {
+        cout << returnArr[i] << " ";
+    }
+    cout << endl;
+
+    return 0;
+}
