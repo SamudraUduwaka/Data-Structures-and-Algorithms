@@ -1,0 +1,77 @@
+#include <bits/stdc++.h>
+
+using namespace std;
+
+string ltrim(const string &);
+string rtrim(const string &);
+
+/*
+ * Complete the 'powerSum' function below.
+ *
+ * The function is expected to return an INTEGER.
+ * The function accepts following parameters:
+ *  1. INTEGER X
+ *  2. INTEGER N
+ */
+
+//Introduced a new param as 'current' with assigned int '1'
+int powerSum(int X, int N, int current =1) {
+    
+    if (X == 0) {
+        //identifies valid combination; terminating case
+        return 1;
+    }
+   
+    if (X < 0 || current > X) {
+        //addresses x is negative or current value being equal or greater than condition
+        return 0;
+    }
+    
+    return powerSum(X - pow(current, N), N, current + 1) + powerSum(X, N, current + 1);
+    //includes current number raised to power n or skip it recursively
+}
+
+int main()
+{
+    ofstream fout(getenv("OUTPUT_PATH"));
+
+    string X_temp;
+    getline(cin, X_temp);
+
+    int X = stoi(ltrim(rtrim(X_temp)));
+
+    string N_temp;
+    getline(cin, N_temp);
+
+    int N = stoi(ltrim(rtrim(N_temp)));
+
+    int result = powerSum(X, N);
+
+    cout << result << "\n";
+
+    fout.close();
+
+    return 0;
+}
+
+string ltrim(const string &str) {
+    string s(str);
+
+    s.erase(
+        s.begin(),
+        find_if(s.begin(), s.end(), not1(ptr_fun<int, int>(isspace)))
+    );
+
+    return s;
+}
+
+string rtrim(const string &str) {
+    string s(str);
+
+    s.erase(
+        find_if(s.rbegin(), s.rend(), not1(ptr_fun<int, int>(isspace))).base(),
+        s.end()
+    );
+
+    return s;
+}
