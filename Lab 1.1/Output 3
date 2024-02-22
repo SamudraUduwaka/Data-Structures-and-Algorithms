@@ -1,0 +1,19 @@
+#include <cmath>
+#include <cstdio>
+#include <vector>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+
+int main() {
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */   
+    int a,b,c; //Integer variables declaration
+    int sum; //Declaring integer variable 'sum' to store the sum
+    
+    cin >> a >> b >> c; //Getting inputs
+    sum = a + b + c; //Calculating sum
+    cout << sum; //Output sum
+    
+    return 0;
+}
