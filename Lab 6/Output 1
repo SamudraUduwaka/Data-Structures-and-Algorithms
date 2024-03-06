@@ -1,0 +1,21 @@
+Node * insert(Node * root, int data) {
+        
+        if(root == NULL) {
+            root = new Node(data); //Creates new node with given value
+        } else {
+            Node* current;
+            
+            //Addresses the minimum case - to left sub-tree
+            if(data < root->data) {
+                current = insert(root->left, data);
+                root->left = current;
+            } 
+            
+            //Addresses the equal and maximum case - to right sub-tree
+            else {
+                current = insert(root->right, data);
+                root->right = current;
+            }
+        }
+        return root;
+    }
